@@ -82,37 +82,57 @@ export default function SidebarWithHeader({ children }) {
               <div className="mt-1 space-y-1 rounded py-1 bg-white ">
                 <Link
                   href="/products/ethnic-wear"
-                  className={`block px-3 py-1 rounded transition hover:bg-[#db0d5f]/10 ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded transition hover:bg-[#db0d5f]/10 ${
                     isActive("/products/ethnic-wear")
                       ? "bg-[#db0d5f]/10 text-[#db0d5f]"
                       : ""
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <span className="p-1 border border-[#db0d5f] rounded-full"></span>
-                  Ethnic Wear
+                  <span
+                    className={`block h-3 w-3 border-2 ${
+                      isActive("/products/ethnic-wear")
+                        ? "border-[#db0d5f]"
+                        : ""
+                    } rounded-full`}
+                  ></span>
+                  <p className="m-0 p-0">Ethnic Wear</p>
                 </Link>
                 <Link
                   href="/products/fusion-wear"
-                  className={`block px-3 py-1 rounded-md transition hover:bg-[#db0d5f]/10 ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded-md transition hover:bg-[#db0d5f]/10 ${
                     isActive("/products/fusion-wear")
                       ? " bg-[#db0d5f]/15 text-[#db0d5f]"
                       : ""
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  Fusion Wear
+                  <span
+                    className={`block h-3 w-3 border-2 ${
+                      isActive("/products/fusion-wear")
+                        ? "border-[#db0d5f]"
+                        : ""
+                    } rounded-full`}
+                  ></span>
+                  <p className="m-0 p-0">Fusion Wear</p>
                 </Link>
                 <Link
                   href="/products/western-wear"
-                  className={`block px-3 py-1 rounded-md transition hover:bg-[#db0d5f]/10 ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded-md transition hover:bg-[#db0d5f]/10 ${
                     isActive("/products/western-wear")
                       ? "bg-[#db0d5f]/15 text-[#db0d5f]"
                       : ""
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  Western Wear
+                  <span
+                    className={`block h-3 w-3 border-2 ${
+                      isActive("/products/western-wear")
+                        ? "border-[#db0d5f]"
+                        : ""
+                    } rounded-full`}
+                  ></span>
+                  <p className="m-0 p-0">Western Wear</p>
                 </Link>
               </div>
             </div>
