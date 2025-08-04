@@ -39,7 +39,7 @@ export default function ProductDetailsLogo() {
   };
 
   return (
-    <div className="max-w-sm mx-auto bg-white overflow-hidden relative">
+    <div className="w-full bg-white overflow-hidden relative">
       <div
         className="relative"
         onTouchStart={handleTouchStart}

@@ -173,12 +173,11 @@ export default function SidebarWithHeader({ children }) {
           </div>
 
           <button className="bg-blue-500 text-white px-2.5 py-1.5 text-sm rounded flex items-center gap-2 hover:bg-blue-600 transition">
-            <FaShareAlt />
-            Share
+            {/* <FaShareAlt /> */}+ Add
           </button>
         </header>
 
-        <main className="p-4 bg-white h-screen text-black">{children}</main>
+        <main className="p-3 bg-white h-screen text-black">{children}</main>
       </div>
     </div>
   );

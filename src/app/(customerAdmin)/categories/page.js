@@ -45,19 +45,19 @@ export default function Categories() {
 
   return (
     <div className="">
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between mb-4">
         <div className="text-xl font-semibold flex items-center gap-2">
           Categories
           <span className="text-red-600 text-sm">
-            <FaYoutube size={18} />
+            <FaYoutube size={24} />
           </span>
         </div>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-sm cursor-pointer flex items-center gap-1">
+        {/* <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-sm cursor-pointer flex items-center gap-1">
           <IoIosAdd size={18} /> Add
-        </button>
+        </button> */}
       </div>
 
-      <div className="flex items-center gap-4 text-sm border-b border-gray-200 pb-3 mb-6">
+      <div className="flex items-center gap-4 text-sm border-b border-gray-200 pb-3 mb-4">
         {["Enable", "Disable", "All"].map((tab) => (
           <button
             key={tab}
@@ -72,7 +72,7 @@ export default function Categories() {
           </button>
         ))}
         <div className="ml-auto flex items-center">
-          <div
+          {/* <div
             className={`flex items-center bg-white transition-all duration-300 ease-in-out p-2 ${
               open ? "w-32 pl-3 " : "w-9 justify-center"
             }`}
@@ -92,6 +92,9 @@ export default function Categories() {
                 className="bg-transparent text-sm outline-none ml-2 w-full"
               />
             )}
+          </div> */}
+          <div className="ml-auto flex text-gray-600 items-center">
+            {filtered.length} Item
           </div>
         </div>
       </div>
@@ -100,10 +103,10 @@ export default function Categories() {
         {filtered.map((cat, index) => (
           <div
             key={index}
-            className="flex items-center justify-between bg-white px-3 py-2 rounded-md border border-gray-200"
+            className="flex items-center justify-between bg-white px-2 py-2 rounded-md border border-gray-200"
           >
-            <div className="flex items-center gap-2">
-              <span className="cursor-move text-gray-600">
+            <div className="flex items-center gap-1">
+              <span className="cursor-move text-gray-600  ">
                 <RiDraggable />
               </span>
               <p className="text-sm font-medium">{cat.name}</p>
