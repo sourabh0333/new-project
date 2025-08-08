@@ -5,7 +5,7 @@ import SecLogoSection from "@/components/secLogo";
 export default function ThemeSec2() {
   return (
     <>
-      <div className="max-w-sm mx-auto h-screen bg-white pb-5">
+      <div className="w-full h-screen bg-white pb-5">
         <SecLogoSection />
         <CateSecB />
         <Footer />

@@ -5,7 +5,7 @@ import LogoSection from "@/components/logoSection";
 export default function Theme2() {
   return (
     <>
-      <div className="max-w-sm mx-auto h-screen bg-white py-5">
+      <div className="w-full h-screen bg-white py-5">
         <LogoSection />
         <CardC />
         <Footer />

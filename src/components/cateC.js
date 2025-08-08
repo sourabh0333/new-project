@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import OrderButton from "./button/orderButton";
 
 const categories = [
   "All",
@@ -14,13 +15,13 @@ const categories = [
 
 const foodItems = [
   {
-    name: "Chocolate Cake",
+    name: "Blueberry Cheesecake Lava with Cookie Crust",
     category: "Cakes",
     price: 350,
     image: "/itemImg1.jpg",
   },
   {
-    name: "Strawberry Pastry",
+    name: "Caramel Popcorn Drizzle with Choco Fudge",
     category: "Pastries",
     price: 250,
     image: "/itemImg1.jpg",
@@ -123,7 +124,7 @@ const CardC = () => {
               </div>
               <div className="w-[40%]">
                 {/* Name */}
-                <h3 className="text-sm font-medium mt-2 leading-tight text-black line-clamp-1">
+                <h3 className="text-sm font-medium mt-2 leading-tight text-black line-clamp-2">
                   {item.name}
                 </h3>
 
@@ -134,7 +135,7 @@ const CardC = () => {
 
                 {/* Quantity Buttons */}
                 <div className="mt-3">
-                  {qty === 0 ? (
+                  {/* {qty === 0 ? (
                     <button
                       onClick={() => handleAdd(item.name)}
                       className="w-[65%] bg-blue-500 text-white py-1 rounded-sm flex justify-center items-center gap-1 text-sm font-medium cursor-pointer"
@@ -157,7 +158,8 @@ const CardC = () => {
                         ＋
                       </button>
                     </div>
-                  )}
+                  )} */}
+                  <OrderButton />
                 </div>
               </div>
             </div>

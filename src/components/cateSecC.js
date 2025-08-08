@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IoShareSocial } from "react-icons/io5";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
+import OrderButton from "./button/orderButton";
 
 const categories = [
   "All",
@@ -135,13 +136,14 @@ const CateSecC = () => {
 
                 {/* Quantity Buttons */}
                 <div className="mt-2">
-                  <Link
+                  {/* <Link
                     href="#"
                     className="flex justify-center items-center text-center bg-[#e8f2ec] w-20 text-green-600 font-bold text-[12px] px-2 py-1 rounded-sm"
                   >
                     <FaWhatsapp size={16} className="mr-1" />
                     Order
-                  </Link>
+                  </Link> */}
+                  <OrderButton />
 
                   {/* {qty === 0 ? (
                     <button
