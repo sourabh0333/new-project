@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { IoShareSocial } from "react-icons/io5";
+import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 const categories = [
   "All",
@@ -122,19 +125,25 @@ const CateSecC = () => {
                 />
               </div>
               <div className="w-[40%]">
-                {/* Name */}
                 <h3 className="text-sm font-medium mt-2 leading-tight text-black line-clamp-1">
                   {item.name}
                 </h3>
 
-                {/* Price */}
                 <p className="text-md font-semibold text-gray-800 mt-0.5">
                   ₹ {item.price}
                 </p>
 
                 {/* Quantity Buttons */}
-                <div className="mt-3">
-                  {qty === 0 ? (
+                <div className="mt-2">
+                  <Link
+                    href="#"
+                    className="flex justify-center items-center text-center bg-[#e8f2ec] w-20 text-green-600 font-bold text-[12px] px-2 py-1 rounded-sm"
+                  >
+                    <FaWhatsapp size={16} className="mr-1" />
+                    Order
+                  </Link>
+
+                  {/* {qty === 0 ? (
                     <button
                       onClick={() => handleAdd(item.name)}
                       className="w-[50%] bg-blue-500 text-white rounded-sm flex justify-center items-center gap-1 text-sm font-medium cursor-pointer"
@@ -157,7 +166,7 @@ const CateSecC = () => {
                         +
                       </button>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

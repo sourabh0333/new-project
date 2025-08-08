@@ -5,6 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { RiDraggable } from "react-icons/ri";
 import { IoIosAdd } from "react-icons/io";
 import { FaYoutube } from "react-icons/fa6";
+import Link from "next/link";
 
 const initialCategories = [
   { name: "Ethnic Wear", enabled: true },
@@ -48,9 +49,14 @@ export default function Categories() {
       <div className="flex items-center justify-between mb-4">
         <div className="text-xl font-semibold flex items-center gap-2">
           Categories
-          <span className="text-red-600 text-sm">
+          <Link
+            href="https://www.youtube.com/embed/NMeEDsiehNg?si=Dh8w5XQM2ti0hT7W"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-red-600 text-sm cursor-pointer"
+          >
             <FaYoutube size={24} />
-          </span>
+          </Link>
         </div>
         {/* <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-sm cursor-pointer flex items-center gap-1">
           <IoIosAdd size={18} /> Add
@@ -71,8 +77,8 @@ export default function Categories() {
             {tab}
           </button>
         ))}
-        <div className="ml-auto flex items-center">
-          {/* <div
+        {/* <div className="ml-auto flex items-center"> */}
+        {/* <div
             className={`flex items-center bg-white transition-all duration-300 ease-in-out p-2 ${
               open ? "w-32 pl-3 " : "w-9 justify-center"
             }`}
@@ -93,9 +99,9 @@ export default function Categories() {
               />
             )}
           </div> */}
-          <div className="ml-auto flex text-gray-600 items-center">
-            {filtered.length} Item
-          </div>
+        <div className="ml-auto flex text-sm text-gray-600 items-center">
+          {filtered.length} Item
+          {/* </div> */}
         </div>
       </div>
 
@@ -118,7 +124,7 @@ export default function Categories() {
                 onChange={() => toggleCategory(index)}
                 className="sr-only peer"
               />
-              <div className="w-10 h-5 bg-gray-200 peer-checked:bg-blue-500 rounded-full peer peer-checked:after:translate-x-5 after:content-[''] after:absolute after:top-[1.5px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all relative" />
+              <div className="w-10 h-5 bg-gray-200 peer-checked:bg-blue-500 rounded-full peer peer-checked:after:translate-x-5 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all relative" />
             </label>
           </div>
         ))}

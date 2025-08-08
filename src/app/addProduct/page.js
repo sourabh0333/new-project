@@ -8,6 +8,28 @@ import { IoIosAdd } from "react-icons/io";
 export default function AddProduct() {
   const [inputValue, setInputValue] = useState("");
   const [categories, setCategories] = useState([]);
+  const [shortDesc, setShortDesc] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  const categoryOptions = [
+    "Ethnic Wear",
+    "Western Wear",
+    "Fusion Wear",
+    "Innerwear & Sleepwear",
+    "Activewear",
+    "Winter Wear",
+  ];
+
+  const toggleCategory = (cat) => {
+    setSelected((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
+  };
+
+  const handleSave = () => {
+    setOpen(false);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && inputValue.trim()) {
@@ -78,7 +100,7 @@ export default function AddProduct() {
           </label>
         </div>
 
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <div>
             <label className="text-sm font-medium block flex items-center gap-2 mb-1">
               Add Category<span className="text-red-500">*</span>
@@ -115,39 +137,159 @@ export default function AddProduct() {
               ))}
             </div>
           )}
+        </div> */}
+
+        <div className="relative max-w-sm mx-auto mb-3">
+          {/* Dropdown box */}
+          <label className="text-sm font-medium">Categories</label>
+
+          <div
+            onClick={() => setOpen(true)}
+            className="border border-gray-300 rounded px-3 py-2 cursor-pointer min-h-14"
+          >
+            {selected.length === 0 ? "Select Category" : selected.join(", ")}
+          </div>
+
+          {/* Modal or dropdown list */}
+          {open && (
+            <div className="fixed inset-0 bg-black/50 flex justify-center items-end md:items-center z-50 ">
+              <div className="bg-white w-full max-w-md rounded-t-xl md:rounded-xl p-4 ">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="font-semibold text-lg">Select a category</h3>
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="text-3xl font-bold "
+                    aria-label="Close"
+                  >
+                    &times;
+                  </button>
+                </div>
+
+                <ul className="divide-y divide-gray-200/60 max-h-60 overflow-y-auto">
+                  {categoryOptions.map((cat) => {
+                    const isSelected = selected.includes(cat);
+                    return (
+                      <li
+                        key={cat}
+                        className={`flex gap-2 items-center py-2 cursor-pointer ${
+                          isSelected
+                            ? "text-pink-600 font-semibold"
+                            : "text-black"
+                        }`}
+                        onClick={() => toggleCategory(cat)}
+                      >
+                        {cat}
+                        {isSelected && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 text-pink-600"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <button
+                  onClick={handleSave}
+                  className="mt-4 w-full bg-pink-600 text-white py-2 rounded"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
-        <div>
-          <label className="text-sm font-medium flex items-center gap-2">
-            Category<span className="text-red-500">*</span>
-          </label>
-          <div className="relative mt-1">
-            <input
-              type="text"
-              className="w-full pr-10 border border-gray-300 px-3 py-2 rounded focus:outline-0"
-              placeholder="Category"
-            />
-          </div>
-        </div>
-        <div>
-          <label className="text-sm font-medium flex items-center gap-2">
-            Price<span className="text-red-500">*</span>
-          </label>
-          <div className="relative mt-1">
-            <input
-              type="text"
-              className="w-full pr-10 border border-gray-300 px-3 py-2 rounded focus:outline-0"
-              placeholder="Price"
-            />
-          </div>
-        </div>
+        {/* <div>
+          <div className="flex items-center">
+            <label className="text-sm font-medium">Short Description</label>
+            <div className="relative group ml-2">
+              <svg
+                className="h-4 w-4 text-gray-400 cursor-pointer"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
 
-        <div>
-          <label className="text-sm font-medium">Description Here</label>
+              <div className="absolute hidden group-hover:block z-10 w-64 p-2 text-xs bg-gray-700 text-white rounded shadow-lg left-full ml-2">
+                Eg: 800/20 Cr.square fit
+              </div>
+            </div>
+          </div>
           <div className="relative mt-1">
             <textarea
               className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0"
-              placeholder="Add Description"
+              placeholder="Eg: "
+              rows={4}
+            ></textarea>
+          </div>
+        </div> */}
+        <div>
+          <div className="flex items-center">
+            <label className="text-sm font-medium">Short Description</label>
+
+            <div className="relative group ml-2">
+              <svg
+                className="h-4 w-4 text-gray-400 cursor-pointer"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:flex flex-col z-10">
+                <div className="relative bg-blue-500 text-white text-xs p-3 rounded shadow-lg w-52">
+                  Use this field to show a price, offer, or any key text. It
+                  will appear just above the call to action button to grab
+                  attention.
+                  <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-blue-500"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative mt-1">
+            <textarea
+              className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0 h-14"
+              placeholder="Short Description"
+              rows={4}
+              name="shortDescription"
+              value={shortDesc}
+              onChange={(e) => setShortDesc(e.target.value)}
+            ></textarea>
+          </div>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium">Full Description</label>
+          <div className="relative mt-1">
+            <textarea
+              className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0"
+              placeholder="Full Description"
               rows={4}
             ></textarea>
           </div>

@@ -1,5 +1,4 @@
 import CateA from "@/components/cateA";
-import CateBtn from "@/components/cateBtn";
 import Footer from "@/components/footer";
 import LogoSection from "@/components/logoSection";
 

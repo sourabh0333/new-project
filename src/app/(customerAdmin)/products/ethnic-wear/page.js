@@ -3,38 +3,44 @@ import { useState } from "react";
 import { FiSearch, FiMoreVertical } from "react-icons/fi";
 import { FaYoutube } from "react-icons/fa6";
 import { IoIosAdd } from "react-icons/io";
+import Link from "next/link";
 
 const initialProducts = [
   {
-    id: "0001",
+    id: "Ethnic Wear",
+    ids: "Festive Wear",
     name: "Women Checked Cotton Maxi Dresses",
     price: "₹660",
     status: "Disable",
     image: "/itemImg1.png",
   },
   {
-    id: "0002",
+    id: "Ethnic Wear",
+    ids: "Festive Wear",
     name: "Georgette Maxi Ethnic Dupatta",
     price: "₹2,479",
     status: "Enable",
     image: "/itemImg1.png",
   },
   {
-    id: "0003",
+    id: "Ethnic Wear",
+    ids: "Festive Wear",
     name: "Print Keyhole Neck Chiffon Maxi Dress",
     price: "₹879",
     status: "Enable",
     image: "/itemImg1.png",
   },
   {
-    id: "0004",
+    id: "Ethnic Wear",
+    ids: "Festive Wear",
     name: "Girls Floral Printed Crepe Sheath Dress",
     price: "₹439",
     status: "Out of Stock",
     image: "/itemImg1.png",
   },
   {
-    id: "0005",
+    id: "Ethnic Wear",
+    ids: "Festive Wear",
     name: "Floral Print Fit & Flare Maxi Dress",
     price: "₹757",
     status: "Enable",
@@ -80,11 +86,7 @@ export default function EthnicWear() {
           </span>
         );
       case "Enable":
-        return (
-          <span className="px-2 py-0.5 bg-green-500 text-xs rounded text-white">
-            In Stock
-          </span>
-        );
+        return <span className="">{/* In Stock */}</span>;
       default:
         return null;
     }
@@ -92,11 +94,11 @@ export default function EthnicWear() {
 
   const getDropdownOptions = () => {
     if (activeTab === "Enable")
-      return ["Edit", "Disable", "Out of Stock", "Delete"];
+      return ["Edit", "Pin To Home", "Disable", "Out of Stock", "Delete"];
     if (activeTab === "Disable") return ["Enable", "Out of Stock", "Delete"];
     if (activeTab === "Out of Stock")
       return ["Edit", "Disable", "In Stock", "Delete"];
-    return ["Edit", "Disable", "Out of Stock", "Delete"];
+    return ["Edit", "Pin To Home", "Disable", "Out of Stock", "Delete"];
   };
 
   return (
@@ -104,13 +106,17 @@ export default function EthnicWear() {
       <div className="flex items-center justify-between mb-3">
         <div className="text-lg font-semibold flex items-center gap-2">
           Ethnic Wear
-          <span className="text-red-600 text-sm">
+          <Link
+            href="https://www.youtube.com/embed/NMeEDsiehNg?si=Dh8w5XQM2ti0hT7W"
+            target="_blank"
+            className="text-red-600 text-sm"
+          >
             <FaYoutube size={24} />
-          </span>
+          </Link>
         </div>
-        {/* <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-sm cursor-pointer flex items-center gap-1">
+        <button className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1.5 rounded-sm cursor-pointer flex items-center gap-1">
           <IoIosAdd size={18} /> Add
-        </button> */}
+        </button>
       </div>
 
       <div className="flex items-center gap-3 text-sm border-b border-gray-200 pb-2 mb-3">
@@ -130,8 +136,9 @@ export default function EthnicWear() {
             {tab}
           </button>
         ))}
-        <div className="ml-auto flex items-center">
-          {/* <div
+
+        {/* <div className="ml-auto flex items-center"> */}
+        {/* <div
             className={`flex items-center bg-white transition-all duration-300 ease-in-out ${
               openSearch ? "w-24 pl-3" : "w-9 justify-center"
             }`}
@@ -152,6 +159,35 @@ export default function EthnicWear() {
               />
             )}
           </div> */}
+        {/* {filtered.length} Item
+        </div> */}
+      </div>
+
+      <div className="flex items-center mb-2">
+        <div className="flex-1 relative">
+          <select className="w-full h-8 appearance-none border border-gray-300 px-3 py-1 rounded text-sm focus:outline-none">
+            <option>Choose Category</option>
+            <option>Cake Shop </option>
+            <option>Cake Shop</option>
+            <option>Cake Shop</option>
+          </select>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            <svg
+              className="h-4 w-4 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        </div>
+        <div className="text-sm ml-2 text-gray-600 text-right">
           {filtered.length} Item
         </div>
       </div>
@@ -174,8 +210,13 @@ export default function EthnicWear() {
               />
               <div className="w-full gap-2 flex justify-between items-start">
                 <div>
-                  <p className="text-[9px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded font-medium w-fit mb-1">
-                    Code:{product.id}
+                  <p className="text-[9px] mb-1 ">
+                    <span className="mr-2 bg-blue-100 text-blue-500 px-2 py-0.5 rounded font-medium w-fit ">
+                      {product.id}
+                    </span>
+                    <span className="bg-blue-100 text-blue-500 px-2 py-0.5 rounded font-medium w-fit">
+                      {product.ids}
+                    </span>
                   </p>
                   <p className="text-sm font-medium mb-0.5 line-clamp-2">
                     {product.name}
@@ -216,7 +257,7 @@ export default function EthnicWear() {
                             }
                             setOpenDropdown(null);
                           }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                          className="px-4 py-1 hover:bg-gray-100 cursor-pointer"
                         >
                           {option}
                         </div>

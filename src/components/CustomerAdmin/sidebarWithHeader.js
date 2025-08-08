@@ -172,9 +172,30 @@ export default function SidebarWithHeader({ children }) {
             <span className="text-base font-semibold">Pizza Hut</span>
           </div>
 
-          <button className="bg-blue-500 text-white px-2.5 py-1.5 text-sm rounded flex items-center gap-2 hover:bg-blue-600 transition">
-            {/* <FaShareAlt /> */}+ Add
-          </button>
+          {/* <button className="bg-blue-500 text-white px-2.5 py-1.5 text-sm rounded flex items-center gap-2 hover:bg-blue-600 transition">
+            + Add
+          </button> */}
+          {/* <div
+            className={`flex items-center bg-white transition-all duration-300 ease-in-out ${
+              openSearch ? "w-24 pl-3" : "w-9 justify-center"
+            }`}
+          >
+            <FiSearch
+              className="text-gray-600 cursor-pointer"
+              onClick={() => setOpenSearch(!openSearch)}
+              size={16}
+            />
+            {openSearch && (
+              <input
+                type="text"
+                autoFocus
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search"
+                className="bg-transparent text-sm outline-none ml-2 w-full"
+              />
+            )}
+          </div> */}
         </header>
 
         <main className="p-3 bg-white h-screen text-black">{children}</main>
