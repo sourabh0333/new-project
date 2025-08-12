@@ -146,6 +146,14 @@ export default function SidebarWithHeader({ children }) {
             Settings
           </Link>
 
+          <Link
+            href="/theme"
+            className={`${isActive("/theme") && "font-semibold text-black"}`}
+            onClick={() => setSidebarOpen(false)}
+          >
+            Theme
+          </Link>
+
           <button className="text-left text-[#db0d5f] font-semibold mt-2">
             Logout
           </button>

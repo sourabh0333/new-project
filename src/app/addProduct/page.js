@@ -1,68 +1,43 @@
 "use client";
 
 import { useState } from "react";
-import { LuUpload } from "react-icons/lu";
+import { Tooltip } from "react-tooltip";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import { IoIosAdd } from "react-icons/io";
+import { IoCloseCircle } from "react-icons/io5";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 export default function AddProduct() {
-  const [inputValue, setInputValue] = useState("");
-  const [categories, setCategories] = useState([]);
   const [shortDesc, setShortDesc] = useState("");
-  const [selected, setSelected] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [images, setImages] = useState([]);
 
-  const categoryOptions = [
-    "Ethnic Wear",
-    "Western Wear",
-    "Fusion Wear",
-    "Innerwear & Sleepwear",
-    "Activewear",
-    "Winter Wear",
-  ];
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const newImages = [...images];
 
-  const toggleCategory = (cat) => {
-    setSelected((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-  };
-
-  const handleSave = () => {
-    setOpen(false);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && inputValue.trim()) {
-      e.preventDefault();
-
-      const formatToTitleCase = (text) =>
-        text
-          .trim()
-          .toLowerCase()
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
-
-      const formatted = formatToTitleCase(inputValue);
-
-      if (!categories.includes(formatted)) {
-        setCategories([...categories, formatted]);
-        setInputValue("");
+    files.forEach((file) => {
+      if (newImages.length < 4) {
+        newImages.push({
+          file,
+          preview: URL.createObjectURL(file),
+        });
       }
-    }
+    });
+
+    setImages(newImages);
   };
 
-  const removeCategory = (indexToRemove) => {
-    setCategories(categories.filter((_, index) => index !== indexToRemove));
+  const removeImage = (index) => {
+    const newImages = images.filter((_, i) => i !== index);
+    setImages(newImages);
   };
 
   return (
-    <div className="max-w-sm mx-auto h-scree bg-white px-4 py-4">
+    <div className="w-full h-screen bg-white px-4 py-4">
       <div className="flex items-center gap-4">
         <button>
           <MdOutlineKeyboardBackspace size={25} className="text-black" />
         </button>
-        <h2 className="text-lg font-semibold text-black">Add Ethnic Wear</h2>
+        <h2 className="text-lg font-semibold text-black">Add Product</h2>
       </div>
 
       <hr className="text-gray-300 my-2" />
@@ -80,175 +55,72 @@ export default function AddProduct() {
         </div>
 
         <div>
-          <label className="text-sm font-medium">Upload Logo Image</label>
+          <label className="text-sm font-medium">Product Image</label>
 
-          <label
-            htmlFor="logo-upload"
-            className="bg-gray-100 text-gray-400 border border-dashed rounded-md py-6 text-center mt-2 text-sm flex flex-col items-center justify-center cursor-pointer"
-          >
-            <div className="flex justify-between items-center px-1 py-1 rounded">
-              <LuUpload className="text-lg text-gray-500 mr-1 " />
-              <p className=" text-gray-500 font-medium">Upload Media</p>
-            </div>
-            <p className="text-xs text-gray-500">You can add upto 5 images</p>
-            <input
-              id="logo-upload"
-              type="file"
-              accept="image/png, image/jpeg"
-              className="hidden"
-            />
-          </label>
-        </div>
-
-        {/* <div className="space-y-3">
-          <div>
-            <label className="text-sm font-medium block flex items-center gap-2 mb-1">
-              Add Category<span className="text-red-500">*</span>
-            </label>
-            <div className="flex items-center border border-gray-300 rounded px-3 py-2">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Add Category"
-                className="flex-1 outline-none text-sm"
-              />
-              <IoIosAdd className="text-gray-500" />
-            </div>
-          </div>
-
-          {categories.length > 0 && (
-            <div className="flex flex-wrap gap-2 border border-gray-200 rounded-sm p-2">
-              {categories.map((cat, index) => (
-                <span
-                  key={index}
-                  className="flex items-center gap-1 bg-blue-100 text-sm text-blue-800 px-2 py-0.5 rounded-md border border-blue-300"
-                >
-                  {cat}
-                  <button
-                    type="button"
-                    onClick={() => removeCategory(index)}
-                    className="ml-1 text-black hover:text-red-500 transition-colors duration-300 cursor-pointer"
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-            </div>
-          )}
-        </div> */}
-
-        <div className="relative max-w-sm mx-auto mb-3">
-          {/* Dropdown box */}
-          <label className="text-sm font-medium">Categories</label>
-
-          <div
-            onClick={() => setOpen(true)}
-            className="border border-gray-300 rounded px-3 py-2 cursor-pointer min-h-14"
-          >
-            {selected.length === 0 ? "Select Category" : selected.join(", ")}
-          </div>
-
-          {/* Modal or dropdown list */}
-          {open && (
-            <div className="fixed inset-0 bg-black/50 flex justify-center items-end md:items-center z-50 ">
-              <div className="bg-white w-full max-w-md rounded-t-xl md:rounded-xl p-4 ">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-semibold text-lg">Select a category</h3>
-                  <button
-                    onClick={() => setOpen(false)}
-                    className="text-3xl font-bold "
-                    aria-label="Close"
-                  >
-                    &times;
-                  </button>
-                </div>
-
-                <ul className="divide-y divide-gray-200/60 max-h-60 overflow-y-auto">
-                  {categoryOptions.map((cat) => {
-                    const isSelected = selected.includes(cat);
-                    return (
-                      <li
-                        key={cat}
-                        className={`flex gap-2 items-center py-2 cursor-pointer ${
-                          isSelected
-                            ? "text-pink-600 font-semibold"
-                            : "text-black"
-                        }`}
-                        onClick={() => toggleCategory(cat)}
-                      >
-                        {cat}
-                        {isSelected && (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 text-pink-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-
+          <div className="flex gap-2 mt-2">
+            {images.map((img, index) => (
+              <div key={index} className="relative w-20 h-20 rounded-sm">
+                <img
+                  src={img.preview}
+                  alt="preview"
+                  className="w-full h-full object-cover rounded-sm"
+                />
                 <button
-                  onClick={handleSave}
-                  className="mt-4 w-full bg-pink-600 text-white py-2 rounded"
+                  type="button"
+                  onClick={() => removeImage(index)}
+                  className="absolute -top-2 -right-2 text-red-500 bg-white rounded-full cursor-pointer"
                 >
-                  Save
+                  <IoCloseCircle size={20} />
                 </button>
               </div>
-            </div>
-          )}
+            ))}
+
+            {images.length < 5 && (
+              <label
+                htmlFor="image-upload"
+                className="w-20 h-20 flex flex-col items-center justify-center border border-dashed rounded cursor-pointer text-gray-400 bg-gray-100 hover:bg-gray-50"
+              >
+                <span className="">
+                  <IoIosAddCircleOutline size={30} />
+                </span>
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  multiple
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+              </label>
+            )}
+          </div>
+
+          <p className="text-xs text-gray-500 mt-1">
+            You can add up to 5 images
+          </p>
         </div>
 
-        {/* <div>
-          <div className="flex items-center">
-            <label className="text-sm font-medium">Short Description</label>
-            <div className="relative group ml-2">
-              <svg
-                className="h-4 w-4 text-gray-400 cursor-pointer"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+        <div className="relative max-w-sm mx-auto mb-3">
+          <label className="text-sm font-medium">Categories</label>
 
-              <div className="absolute hidden group-hover:block z-10 w-64 p-2 text-xs bg-gray-700 text-white rounded shadow-lg left-full ml-2">
-                Eg: 800/20 Cr.square fit
-              </div>
-            </div>
-          </div>
-          <div className="relative mt-1">
-            <textarea
-              className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0"
-              placeholder="Eg: "
-              rows={4}
-            ></textarea>
-          </div>
-        </div> */}
+          <select className="w-full appearance-none border border-gray-300 px-3 py-2 rounded mt-1 pr-10 text-sm focus:outline-none ">
+            <option>Option</option>
+            <option>11 - 30</option>
+            <option>31 - 50</option>
+            <option>51 - 100</option>
+          </select>
+        </div>
+
         <div>
           <div className="flex items-center">
-            <label className="text-sm font-medium">Short Description</label>
+            <label className="text-sm font-medium">Price</label>
 
-            <div className="relative group ml-2">
+            <div className="relative ml-2">
               <svg
-                className="h-4 w-4 text-gray-400 cursor-pointer"
+                data-tooltip-id="price-tooltip"
+                data-tooltip-content="Enter the product price in INR.Enter the product price in INR. Enter the product price in INR. Enter the product price in INR."
+                data-tooltip-place="top"
+                className="h-4 w-4 text-gray-400 cursor-pointer focus:outline-none"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -261,26 +133,22 @@ export default function AddProduct() {
                 />
               </svg>
 
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:flex flex-col z-10">
-                <div className="relative bg-blue-500 text-white text-xs p-3 rounded shadow-lg w-52">
-                  Use this field to show a price, offer, or any key text. It
-                  will appear just above the call to action button to grab
-                  attention.
-                  <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-blue-500"></div>
-                </div>
-              </div>
+              <Tooltip
+                id="price-tooltip"
+                className="z-30 max-w-[270px] whitespace-normal"
+              />
             </div>
           </div>
 
           <div className="relative mt-1">
-            <textarea
-              className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0 h-14"
-              placeholder="Short Description"
+            <input
+              className="w-full border border-gray-300 px-3 py-2 rounded focus:outline-0"
+              placeholder="Enter price"
               rows={4}
               name="shortDescription"
               value={shortDesc}
               onChange={(e) => setShortDesc(e.target.value)}
-            ></textarea>
+            ></input>
           </div>
         </div>
 
