@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import OrderButton from "./button/orderButton";
 
 const categories = [
   "All",
@@ -137,7 +136,7 @@ const CateSecB = () => {
 
                 {/* Quantity Buttons */}
                 <div className="w-[30%]">
-                  {/* {qty === 0 ? (
+                  {qty === 0 ? (
                     <button
                       onClick={() => handleAdd(item.name)}
                       className="w-full bg-blue-500 text-white py-1 rounded-sm flex justify-center items-center gap-1 text-sm font-medium cursor-pointer"
@@ -160,8 +159,7 @@ const CateSecB = () => {
                         ＋
                       </button>
                     </div>
-                  )} */}
-                  <OrderButton />
+                  )}
                 </div>
               </div>
             </div>

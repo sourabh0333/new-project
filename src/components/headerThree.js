@@ -1,75 +1,40 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef } from "react";
+import { useState } from "react";
 import { IoShareSocial } from "react-icons/io5";
 import { FaYoutube, FaInstagram } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/pagination";
+import { FiMenu } from "react-icons/fi";
+import Sidebar from "@/components/Sidebar";
 
 const HeaderThree = () => {
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
-
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    if (progressCircle.current && progressContent.current) {
-      progressCircle.current.style.setProperty("--progress", 1 - progress);
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    }
-  };
-
-  const images = ["/headerImg.jpg", "/headerImg1.png", "/headerImg.jpg"];
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white shadow pb-3">
-      {/* Swiper Slider */}
+    <div className="bg-white shadow pb-3 relative">
+      {/* Sidebar */}
+      <Sidebar isOpen={open} onClose={() => setOpen(false)} />
+
+      {/* Header / Cover */}
       <div className="w-full relative h-40">
-        <Swiper
-          spaceBetween={30}
-          effect={"fade"}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
-          navigation={true}
-          modules={[Autoplay, EffectFade, Pagination]}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          className="h-full"
+        <Image
+          src="/headerImg.jpg"
+          alt="Header Image"
+          fill
+          className="object-cover"
+          priority
+        />
+        <button
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          className="absolute top-4 left-4 p-2 bg-gray-100 rounded-full shadow hover:bg-gray-200"
         >
-          {images.map((src, index) => (
-            <SwiperSlide key={index}>
-              <div className="w-full h-full relative">
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-
-          {/* Autoplay progress indicator */}
-          <div className="autoplay-progress" slot="container-end">
-            <svg viewBox="0 0 48 48" ref={progressCircle}>
-              <circle cx="24" cy="24" r="20"></circle>
-            </svg>
-            <span ref={progressContent}></span>
-          </div>
-        </Swiper>
+          <FiMenu />
+        </button>
       </div>
-      {/* End Swiper Slider */}
 
-      <div className="relative px-4 mt-2 z-50">
+      {/* Content under header */}
+      <div className="relative px-4 mt-2 z-10">
         <div className="absolute -top-11 left-4 w-20 h-20 flex justify-center items-center border-[3px] border-white overflow-hidden shadow bg-white rounded-full">
           <Image
             src="/rounded-logo.png"
@@ -93,7 +58,7 @@ const HeaderThree = () => {
         <div className="pt-2 flex justify-between items-center">
           <div>
             <h2 className="text-base font-semibold text-gray-800 leading-tight">
-              Ribbons & Balloons
+              Ribbons &amp; Balloons
             </h2>
             <p className="text-sm text-gray-600">
               Cake ho ya mood dono yahin bante hain!

@@ -99,9 +99,9 @@ export default function SidebarWithHeader({ children }) {
                   <p className="m-0 p-0">Ethnic Wear</p>
                 </Link>
                 <Link
-                  href="/products/fusion-wear"
+                  href="/products/pinned-to-homepage"
                   className={`flex items-center gap-2 px-3 py-1 rounded-md transition hover:bg-[#db0d5f]/10 ${
-                    isActive("/products/fusion-wear")
+                    isActive("/products/pinned-to-homepage")
                       ? " bg-[#db0d5f]/15 text-[#db0d5f]"
                       : ""
                   }`}
@@ -109,12 +109,12 @@ export default function SidebarWithHeader({ children }) {
                 >
                   <span
                     className={`block h-3 w-3 border-2 ${
-                      isActive("/products/fusion-wear")
+                      isActive("/products/pinned-to-homepage")
                         ? "border-[#db0d5f]"
                         : ""
                     } rounded-full`}
                   ></span>
-                  <p className="m-0 p-0">Fusion Wear</p>
+                  <p className="m-0 p-0">Pinned to Homepage</p>
                 </Link>
                 <Link
                   href="/products/western-wear"
