@@ -9,8 +9,8 @@ export default function ThemeSec() {
     <>
       <div className="w-full mx-auto h-screen bg-white pb-5">
         {/* <SecLogoSection /> */}
-        {/* <SecLogoSectionCopy /> */}
-        <HeaderThree />
+        <SecLogoSectionCopy />
+        {/* <HeaderThree /> */}
         <CateSec />
         <Footer />
       </div>

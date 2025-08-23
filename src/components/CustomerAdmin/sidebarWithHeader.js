@@ -147,6 +147,14 @@ export default function SidebarWithHeader({ children }) {
           </Link>
 
           <Link
+            href="/customer"
+            className={`${isActive("/customer") && "font-semibold text-black"}`}
+            onClick={() => setSidebarOpen(false)}
+          >
+            Customer
+          </Link>
+
+          <Link
             href="/theme"
             className={`${isActive("/theme") && "font-semibold text-black"}`}
             onClick={() => setSidebarOpen(false)}
