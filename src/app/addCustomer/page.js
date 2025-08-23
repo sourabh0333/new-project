@@ -59,7 +59,6 @@ export default function AddCustomer() {
             <option value="service">Service</option>
           </select>
 
-          {/* Dropdown Icon */}
           <div className="pointer-events-none absolute right-3 bottom-3 text-gray-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,8 +85,8 @@ export default function AddCustomer() {
         </div>
 
         {/* Disposition */}
+
         <div>
-          {/* Disposition Select */}
           <div className="relative">
             <label className="text-sm font-semibold">Disposition</label>
             <select
@@ -102,7 +101,6 @@ export default function AddCustomer() {
               <option value="not-interested">Not Interested</option>
             </select>
 
-            {/* Dropdown Icon */}
             <div className="pointer-events-none absolute right-3 bottom-3 text-gray-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
